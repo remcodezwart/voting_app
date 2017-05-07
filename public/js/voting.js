@@ -21,7 +21,7 @@ function newStatement()
 		return;
 	}
 
-	document.getElementById('Statement').innerHTML = statment;
+	document.getElementById('statement').innerHTML = statment;
 }
 
 function answer() 
@@ -33,8 +33,8 @@ function answer()
 function calulateResult()
 {
 	var result = [-1000];
-	document.getElementById('Statement').innerHTML = "";
-	document.getElementById('buttons').class.display = "none";
+	document.getElementById('statement').innerHTML = "";
+	document.getElementById('buttons').className  = "none";
 
 	for (key in partys) {
 		for (index in partys[key].statements) {

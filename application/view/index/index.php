@@ -1,7 +1,7 @@
 <div class="container">
     <div class="box center">
         <h1>Stelling</h1>
-        <p id="Statement"></p>
+        <p id="statement"></p>
         <div id="buttons">
             <button name="1" type="button">voor</button>
             <button name="0" type="button">weet niet</button>
