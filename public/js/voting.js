@@ -6,8 +6,6 @@ for (index in elements) {
     }
 }
 
-var statements = ["De rijken moeten meer belasting betalen", "Er moet meer geld naar het mileu", "Er moet meer geld naar onderwijs"];
-var partys = [{party: 'sp', statements: [1, 1, 1], score:0}, {party:'d66', statements: [0, 1, 0], score:0}, {party:'vvd', statements:[-1, 0, 0], score:0}, {party: 'cda', statements:[1, 1, 1], score:0 }];
 var answers = [];
 
 newStatement();

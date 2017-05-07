@@ -11,10 +11,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $parties = PartyModel::getAllParties(); 
-
         $this->View->render('user/index', array(
-            'parties' => $parties
+            'parties' => PartyModel::getAllParties()
         ));
     }
 

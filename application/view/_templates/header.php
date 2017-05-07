@@ -23,8 +23,11 @@
         <ul class="navigation right">
         <?php if (Session::userIsLoggedIn()) : ?>
             <li <?php if (View::checkForActiveController($filename, "user")) { echo ' class="active" '; } ?> >
-                <a href="<?php echo Config::get('URL'); ?>user/index">Admin</a>
+                <a href="<?php echo Config::get('URL'); ?>user/index">Partyen</a>
                     <ul class="navigation-submenu">
+                    <li <?php if (View::checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
+                        <a href="<?php echo Config::get('URL'); ?>statement/index">statements</a>
+                    </li>
                     <li <?php if (View::checkForActiveController($filename, "login")) { echo ' class="active" '; } ?> >
                         <a href="<?php echo Config::get('URL'); ?>login/logout">Logout</a>
                     </li>

@@ -15,4 +15,8 @@
     <!-- graph here -->
     </div>
 </div>
+<script type="text/javascript">
+    var statements = [<?php foreach ($this->statements as $statement) { ?>"<?=$statement->description ?>", <?php } ?> undefined];
+    var partys = [{party: 'sp', statements: [1, 1, 1], score:0}, {party:'d66', statements: [0, 1, 0], score:0}, {party:'vvd', statements:[-1, 0, 0], score:0}, {party: 'cda', statements:[1, 1, 1], score:0 }];
+</script>
 <script src="<?=Config::get('URL'); ?>js/voting.js" type="text/javascript"></script>

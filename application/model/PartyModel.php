@@ -8,7 +8,7 @@ class PartyModel
 
         $sql = "SELECT * FROM parties WHERE name = :name AND active = :active";
         $query = $database->prepare($sql);
-        $query->execute(array('name' => $name, 'active' => '1'));
+        $query->execute(array(':name' => $name, ':active' => '1'));
 
         return $query->fetch();    
     }
@@ -19,7 +19,7 @@ class PartyModel
 
         $sql = "SELECT * FROM parties WHERE active = :active";
         $query = $database->prepare($sql);
-        $query->execute(array('active' => '1'));
+        $query->execute(array(':active' => '1'));
 
         return $query->fetchAll();    
     }

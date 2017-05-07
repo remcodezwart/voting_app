@@ -1,6 +1,6 @@
 <div class="container">
     <h2 class="inline">partyen</h2>
-    <form name="submit" action="<?=Config::get('URL'); ?>party/new" class="inline" method="post">
+    <form action="<?=Config::get('URL'); ?>party/new" class="inline" method="post">
         
         <input type="text" name="party">
         <input type="hidden" name="csrf_token" value="<?= Csrf::makeToken(); ?>">
