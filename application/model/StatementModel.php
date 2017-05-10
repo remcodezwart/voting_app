@@ -86,4 +86,3 @@ class StatementModel
     }
 
 }
-//$_SERVER['REMOTE_ADDR']

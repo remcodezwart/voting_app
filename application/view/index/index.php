@@ -13,9 +13,11 @@
     </div>
     <div class="box">
     <!-- graph here -->
-    </div>
+    </div> 
 </div>
 <script type="text/javascript">
+    var url = '<?=Config::get('URL'); ?>index/answer';
+    var token = '<?= Csrf::makeToken();?>';
     var statements = [];
     var partys = [];
 

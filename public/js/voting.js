@@ -25,6 +25,7 @@ function newStatement()
 function answer() 
 {
 	answers.push(Number(this.name));
+
 	newStatement();
 }
 
@@ -57,4 +58,10 @@ function calulateResult()
 	for (index in result) {
 		document.getElementById('result').innerHTML += result[index].party + "<br>";
 	}
+
+	$.ajax({
+        type: "POST",
+        url: url,
+        data:{answer: answers, csrf_token: token},      
+    });
 }

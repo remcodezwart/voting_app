@@ -15,5 +15,4 @@ class UserController extends Controller
             'parties' => PartyModel::getAllParties()
         ));
     }
-
 }

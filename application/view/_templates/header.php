@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" href="data:;base64,=">
     <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>css/style.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
     <div class="wrapper">

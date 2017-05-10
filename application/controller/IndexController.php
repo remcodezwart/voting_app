@@ -14,4 +14,14 @@ class IndexController extends Controller
             'parties' => PartyModel::getAllpartiesWithStatments()
         ));
     }
+
+    public function answer()
+    {
+        if (!Csrf::isTokenValid()) {
+            //no need to logout or redirect since the user is not logged in or not on the home page
+            exit();
+        }
+
+        AnswerModel::answerIp();
+    }
 }
