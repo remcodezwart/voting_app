@@ -20,8 +20,19 @@ class StatementModel
         $sql = "INSERT INTO statements (description) VALUES (:statement)";
         $query = $database->prepare($sql);
         $query->execute(array(':statement' => $statement));
-      
+
         if ($query->rowCount() === 1) {
+
+            $id = $database->lastInsertId();
+            $parties = PartyModel::getAllParties();
+
+            $sql = "INSERT INTO opions (statement_id, party_id) VALUES (:statement_id, :party_id)";
+            $query = $database->prepare($sql);
+
+            foreach ($parties as $party) {
+                $query->execute(array(':statement_id' => $id, ':party_id' => $party->id));
+            }
+
             return true;
         }
 
@@ -33,9 +44,7 @@ class StatementModel
     {
         if ($active === "on") {
             $active = "0";
-        } else {
-            $active = "1";
-        } 
+        }
 
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -51,4 +60,30 @@ class StatementModel
         return false;
     }
 
+    public static function getStatmentsByParty($party)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT * FROM opions WHERE party_id = :id AND active = :active";
+        $query = $database->prepare($sql);
+        $query->execute(array(':id' => $party->id, ':active' => '1'));
+
+        if ($query->rowCount() >= 1) {
+            
+            $sql = "SELECT * FROM opions INNER JOIN parties ON party_id = parties.id INNER JOIN statements ON statement_id = statements.id WHERE parties.active = :active AND statements.active = :active AND parties.name = :name";
+            $query = $database->prepare($sql);
+            $query->execute(array(':name' => $party->name, ':active' => '1'));
+
+        } else {
+
+            $sql = "SELECT * FROM statements WHERE active = :active";
+            $query = $database->prepare($sql);
+            $query->execute(array(':active' => '1'));
+
+        }
+
+        return $query->fetchAll();
+    }
+
 }
+//$_SERVER['REMOTE_ADDR']

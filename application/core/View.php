@@ -174,4 +174,14 @@ class View
     {
         return htmlentities($str, ENT_QUOTES, 'UTF-8');
     }
+
+    public static function compare($statment, $compare)
+    {   
+        if (isset($statment->score)) {
+            if ($statment->score == $compare) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

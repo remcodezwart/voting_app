@@ -4,6 +4,10 @@ body {
     font-size: 14px;
 }
 
+.block {
+    display:block;
+}
+
 .margin {
     margin-bottom:10px;
 }

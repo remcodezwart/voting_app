@@ -10,7 +10,8 @@ class IndexController extends Controller
     public function index()
     {
         $this->View->render('index/index', array(
-        	'statements' => StatementModel::getAllstatements()
+        	'statements' => StatementModel::getAllstatements(),
+            'parties' => PartyModel::getAllpartiesWithStatments()
         ));
     }
 }

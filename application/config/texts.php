@@ -24,15 +24,8 @@ return array(
     "FEEDBACK_PASSWORD_RESET_LINK_EXPIRED" => "Your reset link has expired. Please use the reset link within one hour.",
     "FEEDBACK_PASSWORD_RESET_COMBINATION_DOES_NOT_EXIST" => "Username/Verification code combination does not exist.",
     "FEEDBACK_PASSWORD_RESET_LINK_VALID" => "Password reset validation link is valid. Please change the password now.",
-    "FEEDBACK_PASSWORD_CHANGE_SUCCESSFUL" => "Password successfully changed.",
-    "FEEDBACK_PASSWORD_CHANGE_FAILED" => "Sorry, your password changing failed.",
-    "FEEDBACK_PASSWORD_NEW_SAME_AS_CURRENT" => "New password is the same as the current password.",
-    "FEEDBACK_PASSWORD_CURRENT_INCORRECT" => "Current password entered was incorrect.",
-    "FEEDBACK_ACCOUNT_TYPE_CHANGE_SUCCESSFUL" => "Account type change successful",
-    "FEEDBACK_ACCOUNT_TYPE_CHANGE_FAILED" => "Account type change failed",
-    "FEEDBACK_NOTE_CREATION_FAILED" => "Note creation failed.",
-    "FEEDBACK_NOTE_EDITING_FAILED" => "Note editing failed.",
     "FEEDBACK_NOTE_DELETION_FAILED" => "Note deletion failed.",
     "FEEDBACK_COOKIE_INVALID" => "Your remember-me-cookie is invalid.",
     "FEEDBACK_COOKIE_LOGIN_SUCCESSFUL" => "You were successfully logged in via the remember-me-cookie.",
+    
 );
