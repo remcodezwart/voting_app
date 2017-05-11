@@ -1,4 +1,7 @@
 <div class="container">
+    
+    <?php $this->renderFeedbackMessages(); ?>
+    
     <div class="box center">
         <h1>Stelling</h1>
         <p id="statement"></p>

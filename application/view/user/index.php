@@ -1,4 +1,5 @@
 <div class="container">
+    <?php $this->renderFeedbackMessages(); ?>
     <h2 class="inline">partyen</h2>
     <form action="<?=Config::get('URL'); ?>party/add" class="inline" method="post">
         

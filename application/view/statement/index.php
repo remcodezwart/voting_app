@@ -1,4 +1,5 @@
 <div class="container">
+    <?php $this->renderFeedbackMessages(); ?>
 	<h2 class="inline">statements</h2>
 	<form action="<?=Config::get('URL'); ?>statement/add" class="inline" method="post">
         

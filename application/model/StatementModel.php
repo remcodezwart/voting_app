@@ -10,12 +10,25 @@ class StatementModel
         $query = $database->prepare($sql);
         $query->execute(array(':active' => '1'));
 
-        return $query->fetchAll();   
+        $statements = $query->fetchAll();   
+        $statements = Filter::XSSFilter($statements);
+
+        return $statements;  
     }
 
     public static function addStatement($statement)
     {
         $database = DatabaseFactory::getFactory()->getConnection();
+
+        if (is_Null($statement)) {
+            Session::add('feedback_negative', Text::get('EMPTY_NAME_STATEMENT'));
+            return false;
+        }
+
+        if (self::doesStatementAlreadyExist($statement)) {
+            Session::add('feedback_negative', Text::get('STATEMENT_ALREADY_EXSIST'));
+            return false;
+        }
 
         $sql = "INSERT INTO statements (description) VALUES (:statement)";
         $query = $database->prepare($sql);
@@ -36,12 +49,17 @@ class StatementModel
             return true;
         }
 
-
+        Session::add('feedback_negative', Text::get('FEEDBACK_UNKNOWN_ERROR'));
         return false;
     }
 
     public static function editStatement($id, $statement, $active)
     {
+        if (is_Null($statement)) {
+            Session::add('feedback_negative', Text::get('EMPTY_NAME_STATEMENT'));
+            return false;
+        }
+
         if ($active === "on") {
             $active = "0";
         }
@@ -56,12 +74,17 @@ class StatementModel
             return true;
         }
 
-
+        Session::add('feedback_negative', Text::get('FEEDBACK_UNKNOWN_ERROR'));
         return false;
     }
 
     public static function getStatmentsByParty($party)
-    {
+    {   
+        if (is_Null($party)) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_UNKNOWN_ERROR'));
+            return false;
+        }
+
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "SELECT * FROM opions WHERE party_id = :id AND active = :active";
@@ -82,7 +105,21 @@ class StatementModel
 
         }
 
-        return $query->fetchAll();
+        $statements = $query->fetchAll();   
+        $statements = Filter::XSSFilter($statements);
+
+        return $statements;
+    }
+
+    protected static function doesStatementAlreadyExist($statement)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT * FROM statements WHERE description = :statement AND active = :active";
+        $query = $database->prepare($sql);
+        $query->execute(array(':statement' => $statement, ':active' => 1));
+
+        return $query->rowCount() === 1;
     }
 
 }

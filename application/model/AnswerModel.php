@@ -37,7 +37,7 @@ class AnswerModel
     	if ($type === "insert") {
     		$sql = "INSERT INTO voter_result (ip_id, statement_id, score) 							VALUES(:id, :statement_id, :score)";
     	} else if($type === "update") {
-    		$sql = "UPDATE voter_result SET score = :score WHERE ip_id = :id AND statement_id = :statement_id ";
+    		$sql = "UPDATE voter_result SET score = :score WHERE ip_id = :id AND statement_id = :statement_id";
     	}
 
         $query = $database->prepare($sql);

@@ -9,8 +9,9 @@ class PartyModel
         $sql = "SELECT * FROM parties WHERE name = :name AND active = :active";
         $query = $database->prepare($sql);
         $query->execute(array(':name' => $name, ':active' => '1'));
-
-        return $query->fetch();    
+        $party = $query->fetch(); 
+        $party = Filter::XSSFilter($party);
+        return $party;
     }
 
     public static function getAllParties()
@@ -21,7 +22,9 @@ class PartyModel
         $query = $database->prepare($sql);
         $query->execute(array(':active' => '1'));
 
-        return $query->fetchAll();    
+        $parties = $query->fetchAll();
+        $parties = Filter::XSSFilter($parties);
+        return $parties;
     }
 
     public static function delete($id)
@@ -35,7 +38,7 @@ class PartyModel
         if ($query->rowCount() === 1) {
             return true;
         }
-
+        Session::add('feedback_negative', Text::get('FEEDBACK_UNKNOWN_ERROR'));
         return false;
     }
 
@@ -45,6 +48,7 @@ class PartyModel
         $opions = request::post('statements');
 
         if (count($statments) !== count($opions)) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_UNKNOWN_ERROR'));
             return false;
             exit;
         }
@@ -58,14 +62,25 @@ class PartyModel
         }    
         
         if ($query->rowCount() >= 1) {
+            Session::add('feedback_positive', Text::get('SUCCES_EDIT_PARTY_OPIONS'));
             return true;
         }
-
+        Session::add('feedback_negative', Text::get('FEEDBACK_UNKNOWN_ERROR'));
         return false;
     }
 
     public static function add($name)
     {      
+        if (is_Null($name)) {
+            Session::add('feedback_negative', Text::get('EMPTY_NAME_PARTY'));
+            return false;
+        }
+
+        if (self::doesPartyAlreadyExist($name)) {
+            Session::add('feedback_negative', Text::get('PARTY_ALREADY_EXSIST'));
+            return false;
+        }
+
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "INSERT INTO parties (name) VALUES (:name)";
@@ -87,14 +102,13 @@ class PartyModel
 
             return true;
         }
-
+        Session::add('feedback_negative', Text::get('FEEDBACK_UNKNOWN_ERROR'));
         return false;
     }
 
     public static function getAllpartiesWithStatments()
     {
         $parties = self::getAllParties();
-
 
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -113,6 +127,19 @@ class PartyModel
             
         }
 
+        $parties = Filter::XSSFilter($parties);
+
         return $parties;
+    }
+
+    protected static function doesPartyAlreadyExist($party)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT * FROM parties WHERE name = :name AND active = :active";
+        $query = $database->prepare($sql);
+        $query->execute(array(':name' => $party, ':active' => 1));
+
+        return $query->rowCount() === 1;
     }
 }

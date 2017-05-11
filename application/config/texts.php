@@ -27,5 +27,9 @@ return array(
     "FEEDBACK_NOTE_DELETION_FAILED" => "Note deletion failed.",
     "FEEDBACK_COOKIE_INVALID" => "Your remember-me-cookie is invalid.",
     "FEEDBACK_COOKIE_LOGIN_SUCCESSFUL" => "You were successfully logged in via the remember-me-cookie.",
-    
+    "EMPTY_NAME_PARTY" => "Vul een party naam in",
+    "EMPTY_NAME_STATEMENT" => "Vul een statement in",
+    "STATEMENT_ALREADY_EXSIST" => "Dit statement bestaad al",
+    "PARTY_ALREADY_EXSIST" => "Deze party bestaad al",
+    "SUCCES_EDIT_PARTY_OPIONS" => "Succesvol de statments van de party bewerkt"
 );

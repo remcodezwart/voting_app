@@ -1,4 +1,5 @@
 <div class="container">
+    <?php $this->renderFeedbackMessages(); ?>
     <h2>partij naam <?=$this->party->name ?></h2>
     <div class="box">
     	<h3>statements</h3>
